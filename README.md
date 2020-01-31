@@ -1,101 +1,25 @@
-## 引言
+## GodZT 机构职责
 
-JeeSite Spring Cloud 是基于 Spring Cloud Finchley 的一个分布式系统套件的整合。
+这是GodZT 的第一个版本申明：
 
-**特点：用经典开发模式，开发分布式应用，两个字【简单】，一个字【快】。**
+GodZT 旨在记录人类精英的足迹，邀请全世界人类精英加入，推进人类文明进程。GodZT以推进人类快速实现七级文明为己任。
 
-## 技术选型
 
-* 分布式系统套件版本：Spring Cloud Finchley
-* 服务治理注册与发现：Spring Cloud Netflix Eureka
-* 服务容错保护限流降级：Spring Cloud Netflix Hystrix
-* 分布式统一配置中心：Spring Cloud Config
-* 网关路由代理调用：Spring Cloud Gateway
-* 声明式服务调用：Spring Cloud OpenFeign
-* 分布式链路追踪：Spring Cloud Zipkin
+## GodZT 七级文明
 
-## 子项目介绍
 
-* 服务治理：jeesite-cloud-eureka ： <http://127.0.0.1:8970>
-* 配置中心：jeesite-cloud-config ： <http://127.0.0.1:8971/project/default>
-* 网关路由：jeesite-cloud-gateway ： <http://127.0.0.1:8980/js/a/login>
-* 核心模块（**统一授权认证**）：jeesite-cloud-module-core ： <http://127.0.0.1:8981/js>
-* 测试模块1（单表增删改查示例）：
-    - 模块1主项目：jeesite-cloud-module-test1 ： <http://127.0.0.1:8982/js>
-    - 模块1客户端项目（提供其它模块调用）：jeesite-cloud-module-test1-client
-* 测试模块2（树表增删改查示例）：
-    - 模块2主项目：jeesite-cloud-module-test2 ： <http://127.0.0.1:8983/js>
-    - 模块2客户端项目（提供其它模块调用）：jeesite-cloud-module-test2-client
+###一级文明是行星文明，属于这一阶段的文明拥有从主恒星到行星的能量，并且可以完全掌控居住的星球，比如天气情况、地形地貌，而根据科学家们的计算，人类目前的等级只有0.7级！想要达到第一级文明至少还需要奋斗个一百年。
 
-## 快速运行
+###第二级文明则是恒星文明，能够达到这一级文明的话，就拥有完全使用恒星的能量，还能够控制整个恒星系统。比如我们常说的戴森球（这是弗里曼·戴森在1960年提出的由卫星将恒星完全包裹，并且获得其绝大多数或全部的能量输出）。
 
-* 初始化数据库（下载最新的mysql脚本）：
-     https://gitee.com/thinkgem/jeesite4/attach_files
-* 配置 `/jeesite-cloud-config/../cloud-config/application.yml`
-     分布式统一配置文件 JDBC 和 Redis 等信息。
-* 按顺序运行以下启动类的main方法（**启动完成一个再启下一个**）：
-    - /jeesite-cloud-eureka/../EurekaApplication.java
-    - /jeesite-cloud-config/../ConfigApplication.java
-    - /jeesite-cloud-gateway/../GatewayApplication.java
-    - /jeesite-cloud-module-core/../CoreApplication.java
-    - /jeesite-cloud-module-test1/../Test1Application.java
-    - /jeesite-cloud-module-test2/../Test2Application.java
-* 以上都启动成功后，浏览器访问网关项目地址即可：
-    - 访问地址：<http://127.0.0.1:8980/js>   system   admin
-    - 若访问报错，请再等待一会，可能服务未完全启动完成
+###第三级文明属于星系文明，对于达到这一等级的文明他们可以在星系间穿梭，整个星系就好比他们的游乐场，到几万光年外的地方就跟我们平常串门一样方便。如果我们可以达到这一等级，谁还没有个外星人朋友呢！
 
-## 调用实例演示
+###第四等级文明相比于之前等级的文明强度成指数型增长。他们能够感应不同星系的具体位置，还能以某种方式与其他星系的文明进行交流，也许他们会通过虫洞作为通道，进行交流。
 
-### 网关代理模块调用
+###第五等级文明则是可以在多维空间进行活动，他们已经超越了时间，穿越将是必备技能。
 
-* 代理 test1 模块（单表）：<http://127.0.0.1:8980/js/a/test1/testData/list>
-    - 控制器位置：jeesite-cloud-module-test1/../web/TestData1Controller.java
-* 代理 test2 模块（树表）：<http://127.0.0.1:8980/js/a/test2/testTree/list>
-    - 控制器位置：jeesite-cloud-module-test2/../web/TestTree2Controller.java
+###第六等级文明在上一等级上增加了空间穿梭，他们可以在平行宇宙间进行来往，也许那个时候可以看到无数个不同的“自己”。
 
-### 模块之间互相调用
+###第七文明，是超神的存在，也许他们属于“女娲”级别，他们不仅可以对宇宙进行控制，甚至还能制造出无数个宇宙！
 
-* test2 模块调用 test1 模块（单表）：<http://127.0.0.1:8980/js/a/test2/testData/list>
-    - 服务消费者位置：jeesite-cloud-module-test2/../web/TestData2Controller.java
-    - 服务提供者位置：/jeesite-cloud-module-test1/../service/TestDataService.java
-* test1 模块调用 test2 模块（树表）：<http://127.0.0.1:8980/js/a/test1/testTree/list>
-    - 服务消费者位置：jeesite-cloud-module-test1/../web/TestTree1Controller.java
-    - 服务提供者位置：/jeesite-cloud-module-test2/../service/TestTreeService.java
 
-## 授权协议声明
-
-1. 您可以免费使用、修改和衍生代码，但不允许修改后和衍生的代码做为闭源软件发布。
-2. 修改后和衍生的代码必须也按照当前协议进行流通，对修改后和衍生的代码必须向社会公开。
-3. 如果您修改了代码，需要在被修改的文件中进行说明，并遵守代码格式规范，帮助他人更好的理解您的用意。
-4. 在延伸的代码中（修改和有源代码衍生的代码中）需要带有原来代码中的协议、版权声明和其他原作者规定
-    需要包含的说明（请尊重原作者的著作权，不要删除或修改文件中的`@author`信息）。
-5. 本项目仅用于学习和交流，未得到官方授权不得用于商业用途。
-
-### 获得技术服务支持：<http://s.jeesite.com>
-
-* 我们深知，没有资金的支撑就很难得到发展，特别是一个好的产品，如果 JeeSite 帮助了您，请为我们点赞。支持我们，您可以得到一些回报，有了这些我们会把开源事业做的更好，回报社区和社会，请给我们一些动力吧，在此非常感谢已支持我们的朋友！
-
-# 技术交流方式
-
-* QQ 群号：`127515876`、`209330483`、`223507718`、`709534275`、`730390092`、`183903863(外包)`
-* 问题反馈：<https://gitee.com/thinkgem/jeesite4-cloud/issues> 　[【新手必读】](http://www.dianbo.org/9238/stone/tiwendezhihui.htm)
-* 码云Gitee：<https://gitee.com/thinkgem/jeesite4-cloud>
-* GitHub：<https://github.com/thinkgem/jeesite4-cloud>
-* 作者博客：<https://my.oschina.net/thinkgem>
-* 官方网站：<http://jeesite.com>
-* 官方论坛：<http://jeesite.net>
-* 微信公众号：
-
-![JeeSite4微信公众号](https://static.oschina.net/uploads/space/2018/0302/145133_OGZf_941661.jpg "JeeSite4微信公众号")
-
-# Git 全局设置技巧
-
-```
-1、提交检出均不转换换行符
-
-git config --global core.autocrlf false
-
-2、拒绝提交包含混合换行符的文件
-
-git config --global core.safecrlf true
-```
